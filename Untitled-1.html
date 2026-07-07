@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профессия — Инженер-проектировщик</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: radial-gradient(ellipse at 50% 50%, #1a1a2e 0%, #0a0a0f 70%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #8b8b8b;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: #9ca3af;
+            max-width: 700px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            animation: bounce 2s infinite;
+            color: #4b5563;
+            font-size: 1.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #60a5fa;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: #f3f4f6;
+            margin-bottom: 2rem;
+        }
+
+        .section-text {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+
+        .section-text strong {
+            color: #d1d5db;
+        }
+
+        /* ===== CARDS GRID ===== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #111827, #0f172a);
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            color: #f3f4f6;
+            margin-bottom: 1rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            padding: 0.4rem 0;
+            color: #9ca3af;
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .card ul li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #60a5fa;
+            font-weight: bold;
+        }
+
+        /* ===== TECH COLUMNS ===== */
+        .tech-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .tech-column h3 {
+            font-size: 1.4rem;
+            color: #f3f4f6;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #1e293b;
+        }
+
+        .tech-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tech-column ul li {
+            padding: 0.6rem 0;
+            color: #9ca3af;
+            font-size: 1rem;
+            border-bottom: 1px solid #111827;
+        }
+
+        /* ===== SCOPE SECTION ===== */
+        .scope-text {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+        .scope-text strong {
+            color: #d1d5db;
+        }
+
+        /* ===== ADVANTAGES ===== */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .advantage-card {
+            background: linear-gradient(145deg, #111827, #0f172a);
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .advantage-card:hover {
+            border-color: #8b5cf6;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+        }
+
+        .advantage-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .advantage-card h3 {
+            font-size: 1.2rem;
+            color: #f3f4f6;
+            margin-bottom: 0.75rem;
+        }
+
+        .advantage-card p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+        }
+
+        /* ===== EDUCATION ===== */
+        .education-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .education-item {
+            background: linear-gradient(145deg, #111827, #0f172a);
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            border-color: #3b82f6;
+            transform: translateY(-4px);
+        }
+
+        .education-item h4 {
+            color: #f3f4f6;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+        }
+
+        .education-item .subjects {
+            margin-top: 0.8rem;
+            color: #60a5fa;
+            font-size: 0.85rem;
+        }
+
+        /* ===== CAREER PATH ===== */
+        .career-path {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .career-step {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: linear-gradient(145deg, #111827, #0f172a);
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 1.2rem 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .career-step:hover {
+            border-color: #8b5cf6;
+        }
+
+        .career-step .level {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #60a5fa;
+            min-width: 120px;
+        }
+
+        .career-step .salary {
+            color: #a78bfa;
+            font-weight: 600;
+            min-width: 100px;
+        }
+
+        .career-step .desc {
+            color: #9ca3af;
+            font-size: 0.95rem;
+        }
+
+        .salary-table {
+            margin-top: 2rem;
+            background: linear-gradient(145deg, #111827, #0f172a);
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .salary-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .salary-table th {
+            color: #60a5fa;
+            text-align: left;
+            padding: 0.75rem 0.5rem;
+            border-bottom: 2px solid #1e293b;
+        }
+
+        .salary-table td {
+            padding: 0.75rem 0.5rem;
+            color: #d1d5db;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .salary-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ===== PROJECTS ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(145deg, #111827, #0f172a);
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+        }
+
+        .project-card .type {
+            color: #60a5fa;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-card h4 {
+            color: #f3f4f6;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .project-card p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: linear-gradient(145deg, #111827, #0f172a);
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 1.8rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: #60a5fa;
+        }
+
+        .contact-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item h4 {
+            color: #f3f4f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item a {
+            color: #60a5fa;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-item a:hover {
+            color: #93bbfc;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-list {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: linear-gradient(145deg, #111827, #0f172a);
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 1.2rem 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: #8b5cf6;
+        }
+
+        .faq-item .question {
+            color: #f3f4f6;
+            font-weight: 600;
+        }
+
+        .faq-item .answer {
+            color: #9ca3af;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* ===== QUOTE ===== */
+        .quote-section {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        blockquote {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #d1d5db;
+            line-height: 1.8;
+            border-left: 3px solid #8b5cf6;
+            padding-left: 1.5rem;
+            text-align: left;
+        }
+
+        blockquote cite {
+            display: block;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-style: normal;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #4b5563;
+            font-size: 0.85rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            section {
+                padding: 3rem 1.5rem;
+            }
+            .cards-grid, .advantages-grid, .education-list, .projects-grid, .contact-info {
+                grid-template-columns: 1fr;
+            }
+            .career-step {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+            }
+            .career-step .level,
+            .career-step .salary {
+                min-width: unset;
+            }
+            .salary-table {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+            blockquote {
+                font-size: 1.1rem;
+                padding-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-label">Профессия</div>
+        <h1>Инженер-проектировщик</h1>
+        <p class="hero-subtitle">Специалист, который превращает идеи в рабочую проектную документацию — от концепции до чертежей, по которым строятся здания и сооружения</p>
+        <div class="scroll-indicator">↓</div>
+    </div>
+
+    <!-- ВВЕДЕНИЕ (О ПРОФЕССИИ) -->
+    <section>
+        <div class="section-label">О профессии</div>
+        <h2 class="section-title">Кто это?</h2>
+        <p class="section-text">
+            Инженер-проектировщик — специалист, который <strong>разрабатывает проектную и рабочую документацию</strong> для строительства зданий, сооружений и инженерных систем. Он работает на стыке архитектуры, конструирования и инженерных расчётов.
+        </p>
+        <br>
+        <p class="section-text">
+            Такой специалист обеспечивает <strong>безопасность, надёжность и экономическую эффективность</strong> будущего объекта — от фундаментов до кровли, от водоснабжения до электроснабжения.
+        </p>
+    </section>
+
+    <!-- НАПРАВЛЕНИЯ -->
+    <section>
+        <div class="section-label">Направления</div>
+        <h2 class="section-title">Чем занимается?</h2>
+        <p class="section-text">Инженер-проектировщик решает задачи из четырёх ключевых областей:</p>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">📐</div>
+                <h3>Архитектурные решения</h3>
+                <ul>
+                    <li>Планировочные решения</li>
+                    <li>Объёмно-пространственная композиция</li>
+                    <li>Отделка и фасады</li>
+                    <li>Обмерные чертежи</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🏗️</div>
+                <h3>Конструктивные решения</h3>
+                <ul>
+                    <li>Расчёт несущих конструкций</li>
+                    <li>Фундаменты и основания</li>
+                    <li>Каркасы зданий (КМ, КЖ)</li>
+                    <li>Проверка прочности и устойчивости</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Инженерные системы</h3>
+                <ul>
+                    <li>Отопление, вентиляция (ОВиК)</li>
+                    <li>Водоснабжение и канализация (ВК)</li>
+                    <li>Электроснабжение (ЭОМ)</li>
+                    <li>Слаботочные системы</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🗺️</div>
+                <h3>Генплан и благоустройство</h3>
+                <ul>
+                    <li>Генеральный план участка</li>
+                    <li>Вертикальная планировка</li>
+                    <li>Дороги и проезды</li>
+                    <li>Ландшафтные решения</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ТЕХНОЛОГИИ -->
+    <section>
+        <div class="section-label">Инструменты</div>
+        <h2 class="section-title">Что должен уметь?</h2>
+        <p class="section-text">Два столпа работы проектировщика — нормативная база и программное обеспечение:</p>
+
+        <div class="tech-columns">
+            <div class="tech-column">
+                <h3>📋 Нормативная документация</h3>
+                <ul>
+                    <li>СП (Своды правил)</li>
+                    <li>СНиП (Строительные нормы)</li>
+                    <li>ГОСТы</li>
+                    <li>Технические регламенты</li>
+                    <li>СанПиН</li>
+                    <li>СТО и стандарты организаций</li>
+                </ul>
+            </div>
+
+            <div class="tech-column">
+                <h3>💻 Программное обеспечение</h3>
+                <ul>
+                    <li>AutoCAD · NanoCAD · Revit</li>
+                    <li>Renga · ArchiCAD</li>
+                    <li>SCAD · Лира-САПР · Robot</li>
+                    <li>MagiCAD · Valtec</li>
+                    <li>Civil 3D · Topol</li>
+                    <li>BIM 360 · Navisworks</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- СФЕРА ПРИМЕНЕНИЯ -->
+    <section>
+        <div class="section-label">Сфера применения</div>
+        <h2 class="section-title">Где работает проектировщик?</h2>
+        <p class="scope-text">
+            Инженеры-проектировщики создают <strong>проектную документацию</strong> — для жилых комплексов, торговых центров, промышленных предприятий, мостов и дорог.
+        </p>
+        <br>
+        <p class="scope-text">
+            Они выполняют <strong>стадию «П»</strong> (проектная документация для экспертизы) и <strong>стадию «Р»</strong> (рабочая документация для строителей), проходят согласования и авторский надзор.
+        </p>
+        <br>
+        <p class="scope-text">
+            Востребованы в проектных институтах, девелоперских компаниях, государственных структурах — везде, где ведётся капитальное строительство.
+        </p>
+    </section>
+
+    <!-- ОБРАЗОВАНИЕ -->
+    <section>
+        <div class="section-label">Образование</div>
+        <h2 class="section-title">Где учиться?</h2>
+        <p class="section-text">Топ-5 вузов России для будущих инженеров-проектировщиков:</p>
+
+        <div class="education-list">
+            <div class="education-item">
+                <h4>МГСУ (НИУ МГСУ)</h4>
+                <p>Московский государственный строительный университет</p>
+                <div class="subjects">ЕГЭ: математика, физика, русский язык</div>
+            </div>
+            <div class="education-item">
+                <h4>СПбГАСУ</h4>
+                <p>Санкт-Петербургский государственный архитектурно-строительный университет</p>
+                <div class="subjects">ЕГЭ: математика, физика, русский язык</div>
+            </div>
+            <div class="education-item">
+                <h4>НИУ МЭИ</h4>
+                <p>Национальный исследовательский университет "МЭИ" (энергетическое строительство)</p>
+                <div class="subjects">ЕГЭ: математика, физика, русский язык</div>
+            </div>
+            <div class="education-item">
+                <h4>ДонГТУ</h4>
+                <p>Донской государственный технический университет (строительный факультет)</p>
+                <div class="subjects">ЕГЭ: математика, физика, русский язык</div>
+            </div>
+            <div class="education-item">
+                <h4>НГАСУ (Сибстрин)</h4>
+                <p>Новосибирский государственный архитектурно-строительный университет</p>
+                <div class="subjects">ЕГЭ: математика, физика, русский язык</div>
+            </div>
+        </div>
+
+        <br>
+        <p class="section-text">
+            <strong>Онлайн-курсы:</strong> Курсы по AutoCAD, Revit, SCAD на платформах Stepik, Coursera, GeekBrains.
+        </p>
+    </section>
+
+    <!-- КАРЬЕРА -->
+    <section>
+        <div class="section-label">Карьера</div>
+        <h2 class="section-title">Карьерная лестница</h2>
+        <p class="section-text">Как растёт специалист и меняется его доход:</p>
+
+        <div class="career-path">
+            <div class="career-step">
+                <span class="level">Стажёр</span>
+                <span class="salary">от 60 000 ₽</span>
+                <span class="desc">Помощник проектировщика, выполнение простых задач</span>
+            </div>
+            <div class="career-step">
+                <span class="level">Инженер III категории</span>
+                <span class="salary">80 000 – 120 000 ₽</span>
+                <span class="desc">Самостоятельная разработка разделов проекта</span>
+            </div>
+            <div class="career-step">
+                <span class="level">Инженер II категории</span>
+                <span class="salary">120 000 – 180 000 ₽</span>
+                <span class="desc">Координация работы, сложные расчёты</span>
+            </div>
+            <div class="career-step">
+                <span class="level">Инженер I категории</span>
+                <span class="salary">180 000 – 250 000 ₽</span>
+                <span class="desc">Руководство проектом, экспертиза</span>
+            </div>
+            <div class="career-step">
+                <span class="level">Главный инженер проекта</span>
+                <span class="salary">от 250 000 ₽</span>
+                <span class="desc">Полная ответственность за проект, управление командой</span>
+            </div>
+        </div>
+
+        <div class="salary-table">
+            <h3 style="color: #f3f4f6; margin-bottom: 1rem;">📊 Зарплаты по регионам (средние)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Регион</th>
+                        <th>Начинающий</th>
+                        <th>Опытный</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Москва и МО</td><td>90 000 ₽</td><td>200 000 ₽</td></tr>
+                    <tr><td>Санкт-Петербург</td><td>80 000 ₽</td><td>170 000 ₽</td></tr>
+                    <tr><td>Новосибирск</td><td>65 000 ₽</td><td>130 000 ₽</td></tr>
+                    <tr><td>Екатеринбург</td><td>70 000 ₽</td><td>140 000 ₽</td></tr>
+                    <tr><td>Другие регионы</td><td>55 000 ₽</td><td>110 000 ₽</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ПРОЕКТЫ -->
+    <section>
+        <div class="section-label">Проекты</div>
+        <h2 class="section-title">Примеры работ</h2>
+        <p class="section-text">Реальные проекты, которые разрабатывают инженеры-проектировщики:</p>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="type">Жилой комплекс</div>
+                <h4>«Небоскрёб на набережной»</h4>
+                <p>54-этажный жилой комплекс с подземным паркингом. Разработаны конструктивные решения и инженерные системы.</p>
+            </div>
+            <div class="project-card">
+                <div class="type">Промышленное здание</div>
+                <h4>Завод «Технопром»</h4>
+                <p>Производственный корпус площадью 45 000 м². Проектирование несущих конструкций и генплана.</p>
+            </div>
+            <div class="project-card">
+                <div class="type">Мост</div>
+                <h4>Вантовый мост через реку</h4>
+                <p>Длина моста — 1 200 м. Разработка конструктивных решений и проектной документации.</p>
+            </div>
+            <div class="project-card">
+                <div class="type">Бизнес-центр</div>
+                <h4>«Деловой квартал»</h4>
+                <p>Комплекс зданий класса А. Проектирование инженерных систем и генплана.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПРЕИМУЩЕСТВА -->
+    <section>
+        <div class="section-label">Почему это важно</div>
+        <h2 class="section-title">Преимущества профессии</h2>
+
+        <div class="advantages-grid">
+            <div class="advantage-card">
+                <div class="advantage-icon">🎨</div>
+                <h3>Творчество + Инженерия</h3>
+                <p>Сочетает креативный подход с точными техническими расчётами</p>
+            </div>
+
+            <div class="advantage-card">
+                <div class="advantage-icon">🏛️</div>
+                <h3>Масштаб проектов</h3>
+                <p>Результат работы стоит десятилетиями и виден каждому</p>
+            </div>
+
+            <div class="advantage-card">
+                <div class="advantage-icon">📈</div>
+                <h3>Востребованность</h3>
+                <p>Строительство не останавливается — специалисты нужны всегда</p>
+            </div>
+
+            <div class="advantage-card">
+                <div class="advantage-icon">🛡️</div>
+                <h3>Ответственность</h3>
+                <p>Проектировщик напрямую влияет на безопасность людей</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section>
+        <div class="section-label">Контакты</div>
+        <h2 class="section-title">Связаться с нами</h2>
+        <p class="section-text">Остались вопросы? Свяжитесь с нами удобным способом:</p>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="icon">📧</div>
+                <h4>Email</h4>
+                <a href="mailto:info@engineer-site.ru">info@engineer-site.ru</a>
+            </div>
+            <div class="contact-item">
+                <div class="icon">📞</div>
+                <h4>Телефон</h4>
+                <a href="tel:+78005553535">8 (800) 555-35-35</a>
+            </div>
+            <div class="contact-item">
+                <div class="icon">📱</div>
+                <h4>Telegram</h4>
+                <a href="#">@engineer_bot</a>
+            </div>
+            <div class="contact-item">
+                <div class="icon">💬</div>
+                <h4>ВКонтакте</h4>
+                <a href="#">vk.com/engineers</a>
+            </div>
+        </div>
+
+        <div style="margin-top: 2.5rem;">
+            <h3 style="color: #f3f4f6; font-size: 1.3rem; margin-bottom: 1.5rem;">Часто задаваемые вопросы</h3>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="question">❓ Какие предметы нужно сдавать?</div>
+                    <div class="answer">Для поступления на специальность "Строительство" и "Промышленное и гражданское строительство" нужно сдать ЕГЭ по математике, физике и русскому языку.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question">❓ Сколько лет учиться?</div>
+                    <div class="answer">Бакалавриат — 4 года, магистратура — ещё 2 года. Всего 6 лет для полного высшего образования.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question">❓ Сложно ли найти работу?</div>
+                    <div class="answer">Начинающему специалисту важно набраться опыта. Стажировки в проектных институтах и практика во время учёбы сильно помогают.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question">❓ Какие перспективы у профессии?</div>
+                    <div class="answer">Огромные — от работы в крупных компаниях до открытия собственного проектного бюро. Спрос на проектировщиков стабильно высок.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ЦИТАТА -->
+    <div class="quote-section">
+        <blockquote>
+            Инженер-проектировщик — это не тот, кто просто рисует чертежи,<br>
+            а тот, кто обеспечивает <strong>безопасность и долговечность</strong> всего, что построено.
+            <cite>— Принцип строительной индустрии</cite>
+        </blockquote>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 · Инженер-проектировщик · Профессия будущего</p>
+    </footer>
+
+</body>
+</html>
